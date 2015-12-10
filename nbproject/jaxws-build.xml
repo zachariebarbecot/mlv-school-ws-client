@@ -10,6 +10,23 @@
                 JAX-WS WSGEN SECTION
                 ===================
             -->
+    <target name="wsgen-init" depends="init, -do-compile">
+        <mkdir dir="${build.generated.sources.dir}/jax-ws/resources/"/>
+        <mkdir dir="${build.classes.dir}"/>
+        <mkdir dir="${build.classes.dir}/META-INF"/>
+        <property name="j2ee.platform.wsgen.classpath" value="${libs.jaxws21.classpath}"/>
+        <taskdef name="wsgen" classname="com.sun.tools.ws.ant.WsGen">
+            <classpath path="${java.home}/../lib/tools.jar:${build.classes.dir}:${j2ee.platform.wsgen.classpath}:${javac.classpath}"/>
+        </taskdef>
+    </target>
+    <target name="wsgen-Banque" depends="wsgen-init">
+        <copy todir="${build.classes.dir}/META-INF">
+            <fileset dir="${webinf.dir}" includes="wsit-webservice.Banque.xml"/>
+        </copy>
+        <wsgen sourcedestdir="${build.generated.sources.dir}/jax-ws" resourcedestdir="${build.generated.sources.dir}/jax-ws/resources/" destdir="${build.generated.sources.dir}/jax-ws" verbose="true" keep="true" genwsdl="true" sei="webservice.Banque" xendorsed="true">
+            <classpath path="${java.home}/../lib/tools.jar:${build.classes.dir}:${j2ee.platform.wsgen.classpath}:${javac.classpath}"/>
+        </wsgen>
+    </target>
     <!--
                 ===================
                 JAX-WS WSIMPORT SECTION
@@ -42,5 +59,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/webservice"/>
         <delete dir="${build.generated.dir}/jax-wsCache/MLVBibService"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-MLVBibService"/>
+    <target name="wsimport-client-converter" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/converter"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/converter" destdir="${build.generated.dir}/jax-wsCache/converter" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/converter/wsdl/currencyconverter.kowabunga.net/converter.asmx.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://currencyconverter.kowabunga.net/converter.asmx?wsdl" xnocompile="true" xendorsed="true" package="wsclient">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/converter/wsdl/currencyconverter.kowabunga.net/converter.asmx.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/converter"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/converter">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-converter" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/wsclient"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/converter"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-MLVBibService, wsimport-client-converter"/>
 </project>

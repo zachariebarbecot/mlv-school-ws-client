@@ -23,7 +23,7 @@ public class BuyCartServlet extends HttpServlet {
             throws ServletException, IOException {
         MLVBibService mbs = new MLVBibService_Service().getMLVBibServicePort();
         if (!request.getParameter("cart").isEmpty()) {
-            mbs.buyCart();
+            mbs.buyBooksInCart();
             request.setAttribute(ATTR_CATALOG, mbs.catalog());
             request.setAttribute(ATTR_CART, mbs.getCart());
             request.setAttribute(ATTR_PRICE, mbs.getPriceCart());

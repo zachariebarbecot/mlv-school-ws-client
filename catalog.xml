@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://currencyconverter.kowabunga.net/converter.asmx?wsdl" uri="src/conf/xml-resources/web-service-references/converter/wsdl/currencyconverter.kowabunga.net/converter.asmx.wsdl"/>
     <system systemId="http://localhost:8080/mlv-school-rmi-client/MLVBibService?WSDL" uri="src/conf/xml-resources/web-service-references/MLVBibService/wsdl/localhost_8080/mlv-school-rmi-client/MLVBibService.wsdl"/>
     <system systemId="http://localhost:8080/mlv-school-rmi-client/MLVBibService?xsd=1" uri="src/conf/xml-resources/web-service-references/MLVBibService/wsdl/localhost_8080/mlv-school-rmi-client/MLVBibService.xsd_1.xsd"/>
 </catalog>
