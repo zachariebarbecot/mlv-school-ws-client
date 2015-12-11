@@ -1,4 +1,4 @@
-# mlv-school-ws-server
+# mlv-school-ws-client
 By [BARBECOT Zacharie](https://github.com/zachariebarbecot), [BERTILLE Didier](https://github.com/BERTILLEDidier) & [CHATTOU Jéremie] (https://github.com/Erakieljj)
 
 ## Web Services Project
