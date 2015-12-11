@@ -17,17 +17,17 @@
 <message name="catalogResponse">
 <part name="parameters" element="tns:catalogResponse"/>
 </message>
+<message name="emptyCart">
+<part name="parameters" element="tns:emptyCart"/>
+</message>
+<message name="emptyCartResponse">
+<part name="parameters" element="tns:emptyCartResponse"/>
+</message>
 <message name="buyBooksInCart">
 <part name="parameters" element="tns:buyBooksInCart"/>
 </message>
 <message name="buyBooksInCartResponse">
 <part name="parameters" element="tns:buyBooksInCartResponse"/>
-</message>
-<message name="addToCart">
-<part name="parameters" element="tns:addToCart"/>
-</message>
-<message name="addToCartResponse">
-<part name="parameters" element="tns:addToCartResponse"/>
 </message>
 <message name="intiCatalog">
 <part name="parameters" element="tns:intiCatalog"/>
@@ -35,11 +35,11 @@
 <message name="intiCatalogResponse">
 <part name="parameters" element="tns:intiCatalogResponse"/>
 </message>
-<message name="buyCart">
-<part name="parameters" element="tns:buyCart"/>
+<message name="addToCart">
+<part name="parameters" element="tns:addToCart"/>
 </message>
-<message name="buyCartResponse">
-<part name="parameters" element="tns:buyCartResponse"/>
+<message name="addToCartResponse">
+<part name="parameters" element="tns:addToCartResponse"/>
 </message>
 <message name="removeToCart">
 <part name="parameters" element="tns:removeToCart"/>
@@ -47,17 +47,23 @@
 <message name="removeToCartResponse">
 <part name="parameters" element="tns:removeToCartResponse"/>
 </message>
-<message name="getCart">
-<part name="parameters" element="tns:getCart"/>
-</message>
-<message name="getCartResponse">
-<part name="parameters" element="tns:getCartResponse"/>
-</message>
 <message name="getPriceCart">
 <part name="parameters" element="tns:getPriceCart"/>
 </message>
 <message name="getPriceCartResponse">
 <part name="parameters" element="tns:getPriceCartResponse"/>
+</message>
+<message name="buyCart">
+<part name="parameters" element="tns:buyCart"/>
+</message>
+<message name="buyCartResponse">
+<part name="parameters" element="tns:buyCartResponse"/>
+</message>
+<message name="getCart">
+<part name="parameters" element="tns:getCart"/>
+</message>
+<message name="getCartResponse">
+<part name="parameters" element="tns:getCartResponse"/>
 </message>
 <portType name="MLVBibService">
 <operation name="available">
@@ -68,33 +74,37 @@
 <input wsam:Action="http://webservice/MLVBibService/catalogRequest" message="tns:catalog"/>
 <output wsam:Action="http://webservice/MLVBibService/catalogResponse" message="tns:catalogResponse"/>
 </operation>
+<operation name="emptyCart">
+<input wsam:Action="http://webservice/MLVBibService/emptyCartRequest" message="tns:emptyCart"/>
+<output wsam:Action="http://webservice/MLVBibService/emptyCartResponse" message="tns:emptyCartResponse"/>
+</operation>
 <operation name="buyBooksInCart">
 <input wsam:Action="http://webservice/MLVBibService/buyBooksInCartRequest" message="tns:buyBooksInCart"/>
 <output wsam:Action="http://webservice/MLVBibService/buyBooksInCartResponse" message="tns:buyBooksInCartResponse"/>
-</operation>
-<operation name="addToCart">
-<input wsam:Action="http://webservice/MLVBibService/addToCartRequest" message="tns:addToCart"/>
-<output wsam:Action="http://webservice/MLVBibService/addToCartResponse" message="tns:addToCartResponse"/>
 </operation>
 <operation name="intiCatalog">
 <input wsam:Action="http://webservice/MLVBibService/intiCatalogRequest" message="tns:intiCatalog"/>
 <output wsam:Action="http://webservice/MLVBibService/intiCatalogResponse" message="tns:intiCatalogResponse"/>
 </operation>
-<operation name="buyCart">
-<input wsam:Action="http://webservice/MLVBibService/buyCartRequest" message="tns:buyCart"/>
-<output wsam:Action="http://webservice/MLVBibService/buyCartResponse" message="tns:buyCartResponse"/>
+<operation name="addToCart">
+<input wsam:Action="http://webservice/MLVBibService/addToCartRequest" message="tns:addToCart"/>
+<output wsam:Action="http://webservice/MLVBibService/addToCartResponse" message="tns:addToCartResponse"/>
 </operation>
 <operation name="removeToCart">
 <input wsam:Action="http://webservice/MLVBibService/removeToCartRequest" message="tns:removeToCart"/>
 <output wsam:Action="http://webservice/MLVBibService/removeToCartResponse" message="tns:removeToCartResponse"/>
 </operation>
-<operation name="getCart">
-<input wsam:Action="http://webservice/MLVBibService/getCartRequest" message="tns:getCart"/>
-<output wsam:Action="http://webservice/MLVBibService/getCartResponse" message="tns:getCartResponse"/>
-</operation>
 <operation name="getPriceCart">
 <input wsam:Action="http://webservice/MLVBibService/getPriceCartRequest" message="tns:getPriceCart"/>
 <output wsam:Action="http://webservice/MLVBibService/getPriceCartResponse" message="tns:getPriceCartResponse"/>
+</operation>
+<operation name="buyCart">
+<input wsam:Action="http://webservice/MLVBibService/buyCartRequest" message="tns:buyCart"/>
+<output wsam:Action="http://webservice/MLVBibService/buyCartResponse" message="tns:buyCartResponse"/>
+</operation>
+<operation name="getCart">
+<input wsam:Action="http://webservice/MLVBibService/getCartRequest" message="tns:getCart"/>
+<output wsam:Action="http://webservice/MLVBibService/getCartResponse" message="tns:getCartResponse"/>
 </operation>
 </portType>
 <binding name="MLVBibServicePortBinding" type="tns:MLVBibService">
@@ -118,7 +128,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="buyBooksInCart">
+<operation name="emptyCart">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -127,7 +137,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="addToCart">
+<operation name="buyBooksInCart">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -145,7 +155,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="buyCart">
+<operation name="addToCart">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -163,7 +173,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getCart">
+<operation name="getPriceCart">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -172,7 +182,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getPriceCart">
+<operation name="buyCart">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getCart">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

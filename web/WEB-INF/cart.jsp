@@ -39,7 +39,7 @@
                                 <td>
                                     <form method="post">
                                         <input type="hidden" name="isbn" value="${book.getIsbn()}" />
-                                        <input type="submit" value="X" />
+                                        <input type="submit" name="action" value="X" />
                                     </form>
                                 </td>
                             </tr>
@@ -51,6 +51,9 @@
                 <form method="post" action="buy">
                     <input type="hidden" name="cart" value="${requestScope.cart}" />
                     <input type="submit" value="Buy" />
+                </form>
+                <form method="post">
+                    <input type="submit" name="action" value="Empty" />
                 </form>
             </p>
         </c:otherwise>

@@ -38,14 +38,18 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (!request.getParameter("isbn").isEmpty()) {
-            long isbn = Long.parseLong(request.getParameter("isbn"));
-
-            MLVBibService mbs = new MLVBibService_Service().getMLVBibServicePort();
-            mbs.removeToCart(isbn);
-            request.setAttribute(ATTR_CART, mbs.getCart());
-            request.setAttribute(ATTR_PRICE, mbs.getPriceCart());
+        MLVBibService mbs = new MLVBibService_Service().getMLVBibServicePort();
+        String action = request.getParameter("action");
+        if (action.equals("X")) {
+            if (!request.getParameter("isbn").isEmpty()) {
+                long isbn = Long.parseLong(request.getParameter("isbn"));
+                mbs.removeToCart(isbn);
+            }
+        } else {
+            mbs.emptyCart();
         }
+        request.setAttribute(ATTR_CART, mbs.getCart());
+        request.setAttribute(ATTR_PRICE, mbs.getPriceCart());
         RequestDispatcher rd = request.getRequestDispatcher(VIEW_CART);
         rd.forward(request, response);
     }
